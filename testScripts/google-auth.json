@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "climate-pi",
+  "private_key_id": "3d8269f693cc0f871085e23f4a9acebbef1c5ea7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/sQmGcFas2fcp\niGcLQkPezEdWSJBybARaDU5b0qABwyBWmbB6CkdPy1YKchNRQQTIsi2/QdzS2VLB\nIF+ivPqimd/zp7JJy+6yN5iHCxllPw+5ovUHdYq6RxOJRyyWRRkHXw36OJRWzBlB\nuI++9vfnsj5anboZqD4AHa5KPjsXK1HPK65IdNmKVnehn4wPnM2K84MzyhuCLfb8\nZdDQ7t7IlIXxdAtwXGcoaRJFTvrZ+rBaaGWHqI72xk+7YEFXEE3O65+WZStIbR7o\nYA3TMtiJDDN/A2BcAibIDp251r6YDr4O8Oi8qnbh73+eBsL38/4rrw4hbdDj7J0j\nPk1Izo6LAgMBAAECggEAC+rrTy7rzJpOigf/dA0+H/tuUfh39o0tphWesgnBxepG\nN+wdMzExZs4a/tJBzjLvI7UkL/hdzMQTJ4umNn1uTa6oZEMgTANAR1c6hebUQN2v\nUhjGCB0wL02c8tN4e603FaS8vzpGSrEsvs/FLBe5qO+FfefBerfhhutRey8sSE/f\nEdP3TcCU9xUlWPsm3pkjXte3IKsHT0n3cUiY8rT0VPu0QcGXfadlrIFcpEZdJfFm\nUdYrDbuWdhSmtBQpWKvn+KJ0NuNitUuwcEgij8ZxDPq23MnC7Kubyq1Bwmfgm/Hy\nEQJNSBuhPcufoXbeBbPJ360hg6VoZVypOtmU+Q49lQKBgQDrAVSAemR4sHklyEuj\np1dCz4AWJfZcxjsleUTdn6zbj70k+e2eBdwFoxmpIuAR255Byp8IfukqQc0tj51M\nejR7DfDgxSr+UpnJKVDYO85c3Rsc+qhNGAjaK9PSEarbFBmm17wZhKZ8Ca+GEI+b\neP7ClSDh0aU21wCOet1Xrdc8dwKBgQDQ0Rr+03Fvy0/9DVnSvyoud8cd/XM9aRcO\ngRWQL1kBf4XHeegMpIgmt9rCB7LllN3oV6Yfb49I9P1bTNmUdf2Ny6pNIv5zKUIW\n0vjJ+DaItrtY1W4JV7tR7tD+geZFusXflS0wU/LuWKasvNbYS2sAn+KiwoQFOJ3c\nHEe2g/0HjQKBgARsx/yLUWz8Vauic9onAnudkJnaKSNiECcKe4N4yDZyJGuX0SOS\nlKv+gDMxFur/KaGvgQMV8Kn9BzH+bEXOX0KZ5pk03TRgtciV4JHRvnb9Ks+G4Lhi\n5XfGL3zbHE53uGvtz/rjBod7XzS1Bx80Tge36yCVY/j+X2JPae+GtHDNAoGBAL3w\nNjnsYpZpvMxUxItpzxiNYtTooVYOrSZITDDmoHM4Z5tWS7iUQDPXsGglUJh7nI2m\njDiz5QVbssjFUnQ0DvpXcwTO+9wMf0z7gclUuWYJsMfQ+1IMNxsDu56E0cxDY5FH\nw97dvW8HvDQLYPFFSIM8641YmXWWViDMqH5f+FxRAoGANHrvsca2rNCwGQKTUxjB\ndjAOAfAcRXYq53e5Yjn/K49DrkP2txqxM9EUh+D3jtxuyg5iFudyY/6s5n++Sy/e\n0uyYD9yVZoMozcUHgsU933TLqaLAsonHGhZYteyp2Tw5MzTzep+bmShaSTqPJECR\nHRMuA8ZdKX8OX602mUHyS8Q=\n-----END PRIVATE KEY-----\n",
+  "client_email": "climate-pi@climate-pi.iam.gserviceaccount.com",
+  "client_id": "110105212038124706006",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/climate-pi%40climate-pi.iam.gserviceaccount.com"
+}
+
