@@ -1,0 +1,40 @@
+import json
+import sys
+import time
+import datetime
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import settings
+
+class Log:
+    def __init__(self):
+        self.worksheet = self.login_open_sheet(settings.GDOCS_OAUTH_JSON, settings.GDOCS_SPREADSHEET_NAME)
+        print('Logging sensor measurements to {0} every {1} seconds.'.format(settings.GDOCS_SPREADSHEET_NAME, settings.FREQUENCY_SECONDS))
+
+    def log(self, temperature, humidity):
+        if self.worksheet is None:
+            self.worksheet = self.login_open_sheet(settings.GDOCS_OAUTH_JSON, settings.GDOCS_SPREADSHEET_NAME)
+
+        print('Temperature: {0:0.1f} C'.format(temperature))
+        print('Humidity:    {0:0.1f} %'.format(humidity))
+
+        try:
+            self.worksheet.append_row((datetime.datetime.now().isoformat(), temperature, humidity))
+        except:
+            print('Append error, logging in again')
+            self.worksheet = None
+
+        print('Wrote a row to {0}'.format(settings.GDOCS_SPREADSHEET_NAME))
+
+    def login_open_sheet(self, oauth_key_file, spreadsheet):
+        """Connect to Google Docs spreadsheet and return the first worksheet."""
+        try:
+            scope =  ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+            credentials = ServiceAccountCredentials.from_json_keyfile_name(oauth_key_file, scope)
+            gc = gspread.authorize(credentials)
+            worksheet = gc.open(spreadsheet).sheet1
+            return worksheet
+        except Exception as ex:
+            print('Unable to login and get spreadsheet.  Check OAuth credentials, spreadsheet name, and make sure spreadsheet is shared to the client_email address in the OAuth .json file!')
+            print('Google sheet login failed with error:', ex)
+            sys.exit(1)
