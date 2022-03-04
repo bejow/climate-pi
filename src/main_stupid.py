@@ -28,9 +28,9 @@ goal_temp = 20
 goal_humdity = 50
 
 #systemtest
-heatingMat.on()
-time.sleep(0.5)
-heatingMat.off()
+#heatingMat.on()
+#time.sleep(0.5)
+#heatingMat.off()
 
 #loop   
 
