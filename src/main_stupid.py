@@ -27,8 +27,8 @@ goal_humdity = 50
 
 #loop
 
-while True:
-    try:
+try:
+    while True:
         #resetting action params
         fanTargetSpeed = 0
         shouldHeat = False
@@ -62,9 +62,9 @@ while True:
         time.sleep(settings.FREQUENCY_SECONDS)
 
 
-    except KeyboardInterrupt:
-        pass
-        fan.setSpeed(0)
-        GPIO.cleanup()
-    except Exception as e:
+except KeyboardInterrupt:
+    pass
+    fan.setSpeed(0)
+    GPIO.cleanup()
+except Exception as e:
         print(e)
