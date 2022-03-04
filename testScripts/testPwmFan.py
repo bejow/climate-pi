@@ -56,9 +56,8 @@ try:
         print("100")
         setFanSpeed(0)
         time.sleep(10)
-	    print("0")
-	    setFanSpeed(0)
-        
+        print("0")
+        setFanSpeed(0)      
 except KeyboardInterrupt:
     pass
     fan.stop()
