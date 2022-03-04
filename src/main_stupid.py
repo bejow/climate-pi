@@ -18,7 +18,7 @@ import settings
 GPIO.setmode(GPIO.BOARD)
 
 heatingMat = Relay(settings.HEATING_MAT_RELAY_PIN)
-gsheetLogger = Log("test_main_stupid_data")
+gsheetLogger = Log(settings.GDOCS_SPREADSHEET_NAME)
 fan = Fan(settings.FAN_PIN)
 sensor_inside = Sensor(settings.INSIDE_SENSOR_PIN)
 sensor_outside = Sensor(settings.OUTSIDE_SENSOR_PIN)
