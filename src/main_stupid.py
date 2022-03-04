@@ -38,7 +38,7 @@ try:
         h_outside, t_outside = sensor_outside.getTemperatureHumidity()
 
         #Logic
-
+        
         #Heating
         if (t_inside < goal_temp):
             shouldHeat=True
