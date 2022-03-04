@@ -46,7 +46,7 @@ try:
 
         #Logic
 
-        if (h_inside is not None & t_inside is not None & h_outside is not None & t_outside is not None):
+        if (h_inside is not None and t_inside is not None and h_outside is not None and t_outside is not None):
             
             #Heating
             if (t_inside < goal_temp):
@@ -54,15 +54,15 @@ try:
                 print("Turning on Heating Mat to increase teperature")
 
             #Fan
-            if (h_inside > goal_humdity & goal_humdity < h_outside):
+            if (h_inside > goal_humdity and goal_humdity < h_outside):
                 fanTargetSpeed=100
                 print("Turning on fan to decrease humidity")
 
-            elif (t_inside > goal_temp & goal_temp > t_outside):
+            elif (t_inside > goal_temp and goal_temp > t_outside):
                 fanTargetSpeed=100
                 print("Turning on fan to decrease temperature")
 
-            elif (int(t_inside) < goal_temp & int(t_outside) > int(t_inside)):
+            elif (int(t_inside) < goal_temp and int(t_outside) > int(t_inside)):
                 fanTargetSpeed=100
                 print("Truning on fan to increase temperature")
 
