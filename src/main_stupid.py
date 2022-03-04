@@ -27,6 +27,11 @@ sensor_outside = Sensor(settings.OUTSIDE_SENSOR_PIN)
 goal_temp = 20
 goal_humdity = 50
 
+#systemtest
+heatingMat.on()
+time.sleep(0.5)
+heatingMat.off()
+
 #loop
 
 # try:
