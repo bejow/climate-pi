@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 #setting up the pins
 RELAIS_1_PIN = 21
