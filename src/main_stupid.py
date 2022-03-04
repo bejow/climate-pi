@@ -58,7 +58,7 @@ try:
                 fanTargetSpeed=100
                 print("Turning on fan to decrease humidity")
 
-            elif (t_inside > goal_temp and goal_temp > t_outside):
+            elif (t_inside > goal_temp and t_inside > t_outside):
                 fanTargetSpeed=100
                 print("Turning on fan to decrease temperature")
 
