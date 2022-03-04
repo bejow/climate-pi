@@ -44,20 +44,20 @@ while True:
     #Heating
     if (t_inside < goal_temp):
         shouldHeat=True
-        # print("Turning on Heating Mat to increase teperature")
+        print("Turning on Heating Mat to increase teperature")
 
     #Fan
     if (h_inside > goal_humdity & goal_humdity < h_outside):
         fanTargetSpeed=100
-        # print("Turning on fan to decrease humidity")
+        print("Turning on fan to decrease humidity")
 
     elif (t_inside > goal_temp & goal_temp > t_outside):
         fanTargetSpeed=100
-        # print("Turning on fan to decrease temperature")
+        print("Turning on fan to decrease temperature")
 
-    # elif (t_inside < goal_temp & t_outside > t_inside):
-    #     fanTargetSpeed=100
-    #     #print("Truning on fan to increase temperature")
+    elif (t_inside < goal_temp & t_outside > t_inside):
+        fanTargetSpeed=100
+        print("Truning on fan to increase temperature")
 
     #Logging
     gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, fanTargetSpeed, shouldHeat)
