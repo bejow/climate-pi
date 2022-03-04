@@ -17,7 +17,7 @@ import settings
 #setup
 GPIO.cleanup()
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 heatingMat = Relay(settings.HEATING_MAT_RELAY_PIN)
 gsheetLogger = Log(settings.GDOCS_SPREADSHEET_NAME)
