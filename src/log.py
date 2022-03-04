@@ -26,7 +26,7 @@ class Log:
         print('Is heating: {0}'.format(is_heating))
 
         try:
-            self.worksheet.append_row((datetime.datetime.now().isoformat(), temperature_inside, humidity_inside, temperature_outside, humidity_outside, fan_power, is_heating))
+            self.worksheet.append_row((datetime.datetime.now().isoformat(), temperature_inside, humidity_inside, temperature_outside, humidity_outside, fan_speed, is_heating))
         except:
             print('Append error, logging in again')
             self.worksheet = None
