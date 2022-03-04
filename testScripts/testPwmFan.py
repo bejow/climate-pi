@@ -50,16 +50,14 @@ try:
     setFanSpeed(FAN_OFF)
     # Handle fan speed every WAIT_TIME sec
     while True:
-	setFanSpeed(100)
-	print "%.f RPM" % rpm
-	rpm = 0
+        setFanSpeed(100)
+        rpm = 0
         time.sleep(10)   # Detect every second
         print("100")
         setFanSpeed(0)
-	print "%.f RPM" % rpm
         time.sleep(10)
-	print("0")
-	setFanSpeed(0)
+	    print("0")
+	    setFanSpeed(0)
         
 except KeyboardInterrupt:
     pass

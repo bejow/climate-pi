@@ -7,6 +7,7 @@ FAN_HIGH = 100
 class Fan:
     def __init__(self, gpioPin):
         self.gpioPin = gpioPin
+        GPIO.setup(gpioPin, GPIO.OUT, initial=GPIO.LOW)
         self.fan = GPIO.PWM(gpioPin,PWM_FREQ)
              
 
