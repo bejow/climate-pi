@@ -1,5 +1,5 @@
 GDOCS_OAUTH_JSON       = 'google-auth.json'
-GDOCS_SPREADSHEET_NAME = 'test_main_stupid_data'
+GDOCS_SPREADSHEET_NAME = 'climate-pi-data'
 FREQUENCY_SECONDS      = 30
 
 #Pinlayout: GPIO

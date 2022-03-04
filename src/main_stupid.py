@@ -15,6 +15,8 @@ import settings
 # No parameter threshold
 
 #setup
+GPIO.cleanup()
+
 GPIO.setmode(GPIO.BOARD)
 
 heatingMat = Relay(settings.HEATING_MAT_RELAY_PIN)
