@@ -15,6 +15,8 @@ import settings
 # No parameter threshold
 
 #setup
+GPIO.setmode(GPIO.BOARD)
+
 heatingMat = Relay(settings.HEATING_MAT_RELAY_PIN)
 gsheetLogger = Log("test_main_stupid_data")
 fan = Fan(settings.FAN_PIN)
