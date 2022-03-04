@@ -66,5 +66,4 @@ except KeyboardInterrupt:
     pass
     fan.setSpeed(0)
     GPIO.cleanup()
-except Exception as e:
-        print(e)
+
