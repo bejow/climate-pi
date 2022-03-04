@@ -25,8 +25,6 @@ class Log:
         print('Fan Speed: {fan_speed} C'.format(fan_speed))
         print('Is heating: {is_heating} %'.format(is_heating))
 
-
-
         try:
             self.worksheet.append_row((datetime.datetime.now().isoformat(), temperature_inside, humidity_inside, temperature_outside, humidity_outside, fan_power, is_heating))
         except:
