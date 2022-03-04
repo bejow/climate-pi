@@ -10,3 +10,9 @@ class Relay:
 
     def off(self):
         GPIO.output(self.gpioPin, GPIO.LOW )
+
+    def setState (self, state):
+        goalState = GPIO.LOW
+        if (state):
+            goalState = GPIO.HIGH
+        GPIO.output(self.gpioPin, goalState)

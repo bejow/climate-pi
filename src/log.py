@@ -12,12 +12,20 @@ class Log:
         self.spreadsheet_name = spreadsheet_name
         print('Logging sensor measurements to {0} every {1} seconds.'.format(spreadsheet_name, settings.FREQUENCY_SECONDS))
 
-    def log(self, temperature_inside, humidity_inside, temperature_outside, humidity_outside, fan_power, is_heating):
+    def log(self, temperature_inside, humidity_inside, temperature_outside, humidity_outside, fan_speed, is_heating):
         if self.worksheet is None:
             self.worksheet = self.login_open_sheet(settings.GDOCS_OAUTH_JSON, self.spreadsheet_name)
 
-        print('Temperature: {0:0.1f} C'.format(temperature))
-        print('Humidity:    {0:0.1f} %'.format(humidity))
+        print('Temperature inside: {0:0.1f} C'.format(temperature_inside))
+        print('Humidity inside:    {0:0.1f} %'.format(humidity_inside))
+
+        print('Temperature outside: {0:0.1f} C'.format(temperature_outside))
+        print('Humidity outside:    {0:0.1f} %'.format(humidity_outside))
+
+        print('Fan Speed: {fan_speed} C'.format(fan_speed))
+        print('Is heating: {is_heating} %'.format(is_heating))
+
+
 
         try:
             self.worksheet.append_row((datetime.datetime.now().isoformat(), temperature_inside, humidity_inside, temperature_outside, humidity_outside, fan_power, is_heating))

@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import time
 
 from relay import Relay
 from fan import Fan
@@ -39,12 +40,26 @@ while True:
         #Heating
         if (t_inside < goal_temp):
             shouldHeat=True
-        
+            print("Turning on Heating Mat to increase teperature")
         #Fan
         if (h_inside > goal_humdity & goal_humdity < h_outside):
             fanTargetSpeed=100
+            print("Turning on fan to decrease humidity")
         elif (t_inside > goal_temp & goal_temp > t_outside):
             fanTargetSpeed=100
+            print("Turning on fan to decrease temperature")
+
+        #Logging
+        gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, fanTargetSpeed, shouldHeat)
+
+        #Actions
+        fan.setSpeed(fanTargetSpeed)
+        heatingMat.setState(shouldHeat)
+
+        #Repeat every x seconds
+        time.sleep(settings.FREQUENCY_SECONDS)
+
+
     except KeyboardInterrupt:
         pass
         fan.setSpeed(0)
