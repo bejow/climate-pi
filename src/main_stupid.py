@@ -53,9 +53,9 @@ try:
             fanTargetSpeed=100
             # print("Turning on fan to decrease temperature")
 
-        elif (t_inside < goal_temp & t_outside > t_inside):
-            fanTargetSpeed=100
-            #print("Truning on fan to increase temperature")
+        # elif (t_inside < goal_temp & t_outside > t_inside):
+        #     fanTargetSpeed=100
+        #     #print("Truning on fan to increase temperature")
 
         #Logging
         gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, fanTargetSpeed, shouldHeat)
