@@ -7,24 +7,25 @@ from oauth2client.service_account import ServiceAccountCredentials
 import settings
 
 class Log:
-    def __init__(self):
-        self.worksheet = self.login_open_sheet(settings.GDOCS_OAUTH_JSON, settings.GDOCS_SPREADSHEET_NAME)
-        print('Logging sensor measurements to {0} every {1} seconds.'.format(settings.GDOCS_SPREADSHEET_NAME, settings.FREQUENCY_SECONDS))
+    def __init__(self, spreadsheet_name=settings.GDOCS_SPREADSHEET_NAME):
+        self.worksheet = self.login_open_sheet(settings.GDOCS_OAUTH_JSON, spreadsheet_name)
+        self.spreadsheet_name = spreadsheet_name
+        print('Logging sensor measurements to {0} every {1} seconds.'.format(spreadsheet_name, settings.FREQUENCY_SECONDS))
 
-    def log(self, temperature, humidity):
+    def log(self, temperature_inside, humidity_inside, temperature_outside, humidity_outside, fan_power, is_heating):
         if self.worksheet is None:
-            self.worksheet = self.login_open_sheet(settings.GDOCS_OAUTH_JSON, settings.GDOCS_SPREADSHEET_NAME)
+            self.worksheet = self.login_open_sheet(settings.GDOCS_OAUTH_JSON, self.spreadsheet_name)
 
         print('Temperature: {0:0.1f} C'.format(temperature))
         print('Humidity:    {0:0.1f} %'.format(humidity))
 
         try:
-            self.worksheet.append_row((datetime.datetime.now().isoformat(), temperature, humidity))
+            self.worksheet.append_row((datetime.datetime.now().isoformat(), temperature_inside, humidity_inside, temperature_outside, humidity_outside, fan_power, is_heating))
         except:
             print('Append error, logging in again')
             self.worksheet = None
 
-        print('Wrote a row to {0}'.format(settings.GDOCS_SPREADSHEET_NAME))
+        print('Wrote a row to {0}'.format(self.spreadsheet_name))
 
     def login_open_sheet(self, oauth_key_file, spreadsheet):
         """Connect to Google Docs spreadsheet and return the first worksheet."""
