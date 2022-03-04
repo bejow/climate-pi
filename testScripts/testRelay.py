@@ -3,7 +3,7 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 #setting up the pins
-RELAIS_1_PIN = 20
+RELAIS_1_PIN = 21
 
 GPIO.setup(RELAIS_1_PIN, GPIO.OUT)
 

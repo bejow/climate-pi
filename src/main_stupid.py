@@ -32,7 +32,7 @@ heatingMat.on()
 time.sleep(0.5)
 heatingMat.off()
 
-#loop
+#loop   
 
 # try:
 while True:
