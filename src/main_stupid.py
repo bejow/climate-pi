@@ -29,49 +29,49 @@ goal_humdity = 50
 
 #loop
 
-try:
-    while True:
-        #resetting action params
-        fanTargetSpeed = 0
-        shouldHeat = False
+# try:
+while True:
+    #resetting action params
+    fanTargetSpeed = 0
+    shouldHeat = False
 
-        #obtaining values
-        h_inside, t_inside = sensor_inside.getTemperatureHumidity()
-        h_outside, t_outside = sensor_outside.getTemperatureHumidity()
+    #obtaining values
+    h_inside, t_inside = sensor_inside.getTemperatureHumidity()
+    h_outside, t_outside = sensor_outside.getTemperatureHumidity()
 
-        #Logic
-        
-        #Heating
-        if (t_inside < goal_temp):
-            shouldHeat=True
-            # print("Turning on Heating Mat to increase teperature")
+    #Logic
+    
+    #Heating
+    if (t_inside < goal_temp):
+        shouldHeat=True
+        # print("Turning on Heating Mat to increase teperature")
 
-        #Fan
-        if (h_inside > goal_humdity & goal_humdity < h_outside):
-            fanTargetSpeed=100
-            # print("Turning on fan to decrease humidity")
+    #Fan
+    if (h_inside > goal_humdity & goal_humdity < h_outside):
+        fanTargetSpeed=100
+        # print("Turning on fan to decrease humidity")
 
-        elif (t_inside > goal_temp & goal_temp > t_outside):
-            fanTargetSpeed=100
-            # print("Turning on fan to decrease temperature")
+    elif (t_inside > goal_temp & goal_temp > t_outside):
+        fanTargetSpeed=100
+        # print("Turning on fan to decrease temperature")
 
-        # elif (t_inside < goal_temp & t_outside > t_inside):
-        #     fanTargetSpeed=100
-        #     #print("Truning on fan to increase temperature")
+    # elif (t_inside < goal_temp & t_outside > t_inside):
+    #     fanTargetSpeed=100
+    #     #print("Truning on fan to increase temperature")
 
-        #Logging
-        gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, fanTargetSpeed, shouldHeat)
+    #Logging
+    gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, fanTargetSpeed, shouldHeat)
 
-        #Actions
-        fan.setSpeed(fanTargetSpeed)
-        heatingMat.setState(shouldHeat)
+    #Actions
+    fan.setSpeed(fanTargetSpeed)
+    heatingMat.setState(shouldHeat)
 
-        #Repeat every x seconds
-        time.sleep(settings.FREQUENCY_SECONDS)
+    #Repeat every x seconds
+    time.sleep(settings.FREQUENCY_SECONDS)
 
 
-except KeyboardInterrupt:
-    pass
-    fan.setSpeed(0)
-    GPIO.cleanup()
+# except KeyboardInterrupt:
+#     pass
+#     fan.setSpeed(0)
+#     GPIO.cleanup()
 
