@@ -55,7 +55,7 @@ while True:
         fanTargetSpeed=100
         print("Turning on fan to decrease temperature")
 
-    elif (t_inside < goal_temp & t_outside > t_inside):
+    elif (int(t_inside) < goal_temp & int(t_outside) > int(t_inside)):
         fanTargetSpeed=100
         print("Truning on fan to increase temperature")
 
