@@ -3,7 +3,8 @@ import RPi.GPIO as GPIO
 class Relay:
     def __init__(self, gpioPin):
         self.gpioPin = gpioPin
-        GPIO.setup(gpioPin, GPIO.HIGH)
+
+        GPIO.setup(gpioPin, GPIO.OUT,  GPIO.HIGH)
 
     def on(self):
         GPIO.output(self.gpioPin, GPIO.LOW)
