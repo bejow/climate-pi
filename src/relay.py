@@ -5,6 +5,8 @@ class Relay:
         self.gpioPin = gpioPin
 
         GPIO.setup(gpioPin, GPIO.OUT,  GPIO.HIGH)
+        GPIO.output(gpioPin, GPIO.LOW)    # set output low
+        GPIO.output(gpioPin, GPIO.HIGH) 
 
     def on(self):
         GPIO.output(self.gpioPin, GPIO.LOW)
