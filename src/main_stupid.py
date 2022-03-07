@@ -51,19 +51,21 @@ try:
             #Heating
             if (t_inside < goal_temp):
                 shouldHeat=True
-                print("Turning on Heating Mat to increase teperature")
+                print("Turning on Heating Mat to increase temperature")
 
             #Fan
             if (h_inside > goal_humdity and goal_humdity < h_outside):
-                fanTargetSpeed=100
+                fanTargetSpeed=50
                 print("Turning on fan to decrease humidity")
 
+
+
             elif (t_inside > goal_temp and t_inside > t_outside):
-                fanTargetSpeed=100
+                fanTargetSpeed=50
                 print("Turning on fan to decrease temperature")
 
-            elif (int(t_inside) < goal_temp and int(t_outside) > int(t_inside)):
-                fanTargetSpeed=100
+            elif (t_inside < goal_temp and t_outside > t_inside):
+                fanTargetSpeed=50
                 print("Truning on fan to increase temperature")
 
         #Logging
