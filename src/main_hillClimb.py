@@ -60,9 +60,10 @@ while True:
         # Evalueate Neighbor
         neighborScore = climateRegulation.getScore(t_inside, h_inside)
 
-        #Logging Results
+        # Logging Results
         gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, neighborState[0], neighborState[1], neighborScore)
 
+        # Compare States (small = better)
         if (neighborScore < bestNeighborScore):
             bestNeighborScore = neighborScore
             bestNeighborState = neighborState
