@@ -26,15 +26,15 @@ class ClimateRegulation:
             neighborFanStateIndex = fanStateIndex -1
             neighborFanState = self.fanStates[neighborFanStateIndex]
             # with both Heating Mat on/off
-            neighborStates.push((neighborFanState, True))
-            neighborStates.push((neighborFanState, False))
+            neighborStates.append((neighborFanState, True))
+            neighborStates.append((neighborFanState, False))
         if (fanStateIndex < FAN_STEPS-1):
             #higher fan speed
             neighborFanStateIndex = fanStateIndex +1
             neighborFanState = self.fanStates[neighborFanStateIndex]
             # with both Heating Mat on/off
-            neighborStates.push((neighborFanState, True))
-            neighborStates.push((neighborFanState, False))
+            neighborStates.append((neighborFanState, True))
+            neighborStates.append((neighborFanState, False))
         return neighborStates
 
     def setState(self, state):
