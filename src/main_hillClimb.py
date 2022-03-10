@@ -63,7 +63,7 @@ while True:
         #Logging Results
         gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, neighborState[0], neighborState[1], neighborScore)
 
-        if (neighborScore > bestNeighborScore):
+        if (neighborScore < bestNeighborScore):
             bestNeighborScore = neighborScore
             bestNeighborState = neighborState
     
