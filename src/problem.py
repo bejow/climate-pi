@@ -41,6 +41,9 @@ class ClimateRegulation:
         self.currentFanState = state[0]
         self.currentHeatMatState = state[1]
 
+    def getState(self):
+        return (self.currentFanState, self.currentHeatMatState)
+
     def getScore(self, newTemperature, newHumidity):
         #delta t/h towards goal t/h - the lower the better
         return (abs(self.goalTemperature - newTemperature) + abs(self.goalHumidity - newHumidity))

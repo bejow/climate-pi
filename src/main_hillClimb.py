@@ -40,7 +40,7 @@ try:
     h_outside, t_outside = sensor_outside.getTemperatureHumidity()
     
     while True:
-        neighborStates = climateRegulation.getNeighborStates()
+        neighborStates = climateRegulation.getNeighborStates(climateRegulation.getState())
         bestNeighborState = currentState
         bestNeighborScore = climateRegulation.getScore(t_inside, h_inside)
 
