@@ -1,6 +1,7 @@
+import RPi.GPIO as GPIO
 import Adafruit_DHT as dht
 from time import sleep
-
+GPIO.setmode(GPIO.BCM)
 SENSOR_PIN = 2
 
 while True:
