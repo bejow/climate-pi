@@ -2,6 +2,8 @@ GDOCS_OAUTH_JSON       = 'google-auth.json'
 GDOCS_SPREADSHEET_NAME = 'climate-pi-data'
 FREQUENCY_SECONDS      = 30
 
+TEST_TIME = 120
+
 #Pinlayout: GPIO
 INSIDE_SENSOR_PIN = 2
 OUTSIDE_SENSOR_PIN = 3
