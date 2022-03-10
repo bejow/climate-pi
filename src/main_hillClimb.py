@@ -31,54 +31,54 @@ climateRegulation = ClimateRegulation(goal_temp, goal_humdity)
 
 #loop   
 
-try:
-    # initialize values
-    currentState = climateRegulation.getRandomState()
+# try:
+# initialize values
+currentState = climateRegulation.getRandomState()
+climateRegulation.setState(currentState)
+
+h_inside, t_inside = sensor_inside.getTemperatureHumidity()
+h_outside, t_outside = sensor_outside.getTemperatureHumidity()
+
+while True:
+    neighborStates = climateRegulation.getNeighborStates(climateRegulation.getState())
+    bestNeighborState = currentState
+    bestNeighborScore = climateRegulation.getScore(t_inside, h_inside)
+
+    # Testing neighbor states
+    for neighborState in neighborStates:
+        print("Testing new Neighbor:", neighborState)
+
+        # Test with new params
+        fan.setSpeed(neighborState[0])
+        heatingMat.setState(neighborState[1])
+
+        # Wait until measurement makes sense (thermodynamic)
+        time.sleep(settings.TEST_TIME)
+        h_inside, t_inside = sensor_inside.getTemperatureHumidity()
+        h_outside, t_outside = sensor_outside.getTemperatureHumidity()
+
+        # Evalueate Neighbor
+        neighborScore = climateRegulation.getScore(t_inside, h_inside)
+
+        #Logging Results
+        gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, neighborState[0], neighborState[1])
+
+        if (neighborScore > bestNeighborScore):
+            bestNeighborScore = neighborScore
+            bestNeighborState = neighborState
+    
+    # Make decision / Pick best state
+    currentState = bestNeighborState
     climateRegulation.setState(currentState)
 
-    h_inside, t_inside = sensor_inside.getTemperatureHumidity()
-    h_outside, t_outside = sensor_outside.getTemperatureHumidity()
-    
-    while True:
-        neighborStates = climateRegulation.getNeighborStates(climateRegulation.getState())
-        bestNeighborState = currentState
-        bestNeighborScore = climateRegulation.getScore(t_inside, h_inside)
-
-        # Testing neighbor states
-        for neighborState in neighborStates:
-            print("Testing new Neighbor:", neighborState)
-
-            # Test with new params
-            fan.setSpeed(neighborState[0])
-            heatingMat.setState(neighborState[1])
-
-            # Wait until measurement makes sense (thermodynamic)
-            time.sleep(settings.TEST_TIME)
-            h_inside, t_inside = sensor_inside.getTemperatureHumidity()
-            h_outside, t_outside = sensor_outside.getTemperatureHumidity()
-
-            # Evalueate Neighbor
-            neighborScore = climateRegulation.getScore(t_inside, h_inside)
-
-            #Logging Results
-            gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, neighborState[0], neighborState[1])
-
-            if (neighborScore > bestNeighborScore):
-                bestNeighborScore = neighborScore
-                bestNeighborState = neighborState
-        
-        # Make decision / Pick best state
-        currentState = bestNeighborState
-        climateRegulation.setState(currentState)
 
 
+# except KeyboardInterrupt:
+#     pass
+#     fan.setSpeed(0)
+#     GPIO.cleanup()
 
-except KeyboardInterrupt:
-    pass
-    fan.setSpeed(0)
-    GPIO.cleanup()
-
-except Exception as e:
-    print(e.__str__())
-    GPIO.cleanup()
+# except Exception as e:
+#     print(e.__str__())
+#     GPIO.cleanup()
 
