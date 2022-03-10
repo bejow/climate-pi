@@ -1,9 +1,9 @@
 import random
-FAN_STEPS = 10
+import settings
 class ClimateRegulation:
 
     def __init__(self, goalTemperature = 18, goalHumidity=60, currentFanState=None, currentHeatMatState=None, temperatureInside=None, humidityInside=None, temperatureOutside=None, humidityOutside=None):
-        self.fanStates = range(0, 100, FAN_STEPS) #10 states for the fan
+        self.fanStates = range(0, 100, settings.FAN_STEPS) #10 states for the fan
         self.heatMatStates = [True, False]
         self.currentFanState = currentFanState
         self.currentHeatMatState = currentHeatMatState
@@ -28,7 +28,7 @@ class ClimateRegulation:
             # with both Heating Mat on/off
             neighborStates.append((neighborFanState, True))
             neighborStates.append((neighborFanState, False))
-        if (fanStateIndex < FAN_STEPS-1):
+        if (fanStateIndex < settings.FAN_STEPS-1):
             #higher fan speed
             neighborFanStateIndex = fanStateIndex +1
             neighborFanState = self.fanStates[neighborFanStateIndex]
