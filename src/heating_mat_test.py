@@ -8,7 +8,7 @@ from sensor import Sensor
 import settings
 
 heatingMat = Relay(settings.HEATING_MAT_RELAY_PIN)
-gsheetLogger = Log(settings.GDOCS_SPREADSHEET_NAME)
+gsheetLogger = Log("heating-mat-data")
 sensor_inside = Sensor(settings.INSIDE_SENSOR_PIN)
 sensor_outside = Sensor(settings.OUTSIDE_SENSOR_PIN)
 
