@@ -7,6 +7,8 @@ from sensor import Sensor
 
 import settings
 
+GPIO.setmode(GPIO.BCM)
+
 heatingMat = Relay(settings.HEATING_MAT_RELAY_PIN)
 gsheetLogger = Log("heating-mat-data")
 sensor_inside = Sensor(settings.INSIDE_SENSOR_PIN)
