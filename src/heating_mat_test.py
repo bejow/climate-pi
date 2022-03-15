@@ -24,7 +24,7 @@ while secs_since_start <= 3600:
     try:
         h_inside, t_inside = sensor_inside.getTemperatureHumidity()
         h_outside, t_outside = sensor_outside.getTemperatureHumidity()
-        gsheetLogger.log(t_inside, h_inside, t_outside, h_outside)
+        gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, 0, False)
         time.sleep(30)
         secs_since_start += 30
     except Exception as e:
