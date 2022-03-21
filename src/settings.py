@@ -1,5 +1,5 @@
 GDOCS_OAUTH_JSON       = 'google-auth.json'
-GDOCS_SPREADSHEET_NAME = 'climate-pi-data'
+GDOCS_SPREADSHEET_NAME = 'fan-data'
 FREQUENCY_SECONDS      = 30
 
 FAN_STEPS = 10
