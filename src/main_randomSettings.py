@@ -46,7 +46,7 @@ try:
         heatingMat.setState(shouldHeat)
 
         # Wait for result (slowly changing)
-        for item in progressBar(range(settings.TEST_TIME), "Testing Settings:", "Complete", 2, 50, printEnd=""):
+        for item in progressBar(range(settings.TEST_TIME), "Testing Settings:", "Complete", 2, 40, printEnd=""):
             time.sleep(1)
 
         # Obtaining result
