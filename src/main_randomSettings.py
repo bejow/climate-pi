@@ -28,6 +28,10 @@ fan = Fan(settings.FAN_PIN)
 sensor_inside = Sensor(settings.INSIDE_SENSOR_PIN)
 sensor_outside = Sensor(settings.OUTSIDE_SENSOR_PIN)
 
+# from 0-30 the fan is not moving
+fan_settings = [i for i in range(30,100)]
+fan_settings += 0 # still add an "off" mode
+
 #loop   
 prev_h_inside, prev_t_inside = sensor_inside.getTemperatureHumidity()
 prev_h_outside, prev_t_outside = sensor_outside.getTemperatureHumidity()
@@ -35,7 +39,7 @@ prev_h_outside, prev_t_outside = sensor_outside.getTemperatureHumidity()
 # try:
 while True:
     # Randomly choose settings
-    fanTargetSpeed = random.choice([i for i in range(30,100)].append(0)) # from 0-30 the fan is not moving
+    fanTargetSpeed = random.choice(fan_settings) 
     shouldHeat = bool(random.getrandbits(1))
 
     print("Fan Target Speed set to:", fanTargetSpeed)
