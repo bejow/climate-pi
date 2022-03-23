@@ -35,7 +35,7 @@ prev_h_outside, prev_t_outside = sensor_outside.getTemperatureHumidity()
 try:
     while True:
         # Randomly choose settings
-        fanTargetSpeed = random.randint(0,100)
+        fanTargetSpeed = random.choice([0] + range(30,100)) # from 0-30 the fan is not moving
         shouldHeat = bool(random.getrandbits(1))
 
         print("Fan Target Speed set to:", fanTargetSpeed)
@@ -46,7 +46,7 @@ try:
         heatingMat.setState(shouldHeat)
 
         # Wait for result (slowly changing)
-        for item in progressBar(range(settings.TEST_TIME), "Testing Settings:", "Complete", 2, 50):
+        for item in progressBar(range(settings.TEST_TIME), "Testing Settings:", "Complete", 2, 50, printEnd=""):
             time.sleep(1)
 
         # Obtaining result
@@ -54,7 +54,7 @@ try:
         h_outside, t_outside = sensor_outside.getTemperatureHumidity()
 
         # Logging
-        gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, fanTargetSpeed, shouldHeat)
+        gsheetLogger.log2(t_inside, h_inside, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, fanTargetSpeed, shouldHeat)
 
         # Memorize Environment Data for the next loop (to evaluate the impact of the random settings)
         prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside = t_inside, h_inside, t_outside, h_outside
