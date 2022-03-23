@@ -30,7 +30,7 @@ sensor_outside = Sensor(settings.OUTSIDE_SENSOR_PIN)
 
 # from 0-30 the fan is not moving
 fan_settings = [i for i in range(30,100)]
-fan_settings += 0 # still add an "off" mode
+fan_settings.append(0) # still add an "off" mode
 
 #loop   
 prev_h_inside, prev_t_inside = sensor_inside.getTemperatureHumidity()
