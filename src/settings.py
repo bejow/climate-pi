@@ -1,10 +1,10 @@
 GDOCS_OAUTH_JSON       = 'google-auth.json'
-GDOCS_SPREADSHEET_NAME = 'test_main_stupid_data'
+GDOCS_SPREADSHEET_NAME = 'test_data_with_random_settings'
 FREQUENCY_SECONDS      = 30
 
 FAN_STEPS = 10
 
-TEST_TIME = 120
+TEST_TIME = 600
 
 #Pinlayout: GPIO
 INSIDE_SENSOR_PIN = 2

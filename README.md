@@ -27,4 +27,13 @@ An automated climate regulation system. The climate Pi uses sensor data in combi
         - `>> sudo python3 -m pip install --upgrade pip setuptools wheel`
         - `>> cd libs/Adafruit_Python_DHT `
         - `>> sudo python3 setup.py install`
+        - Read comments to understand Google Sheets Oauth2: `libs\Adafruit_Python_DHT\examples\google_spreadsheet.py`
+            - Add google-auth.json to `src/`
+            - Create Google Service Account
+            - Specify Google Sheet to log data to `src/settings.py`
+    - [Gspread](https://pypi.org/project/gspread/)
+        - `>> sudo pip3 install gspread oauth2client`
+        - `>> sudo apt-get update`
+        - `>> sudo apt-get install python-openssl`
+- Change settings regarding your needs under `src/settings.py`
     
