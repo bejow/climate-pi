@@ -79,12 +79,18 @@ while True:
     currentState = bestNeighborState
     climateRegulation.setState(currentState)
 
+    # Print current environment values
+    print("Humidity:\ninside:{0}\noutside:{1}".format(h_inside, h_outside))
+    print("Temperature:\ninside:{0}\noutside:{1}".format(t_inside, t_outside))
+
     # Print the current action
     print("Setting Fan to: ", currentState[0])
     fan.setSpeed(currentState[0])
 
     print("Heating: ", currentState[1])
     heatingMat.setState(currentState[1])
+
+    print("Estimated state after action: {0}% Humdity, {1}C Temperature".format(predicted_h_inside, predicted_t_inside))
 
     # Wait until change take place
     for item in progressBar(range(settings.TEST_TIME), "Testing Settings:", "Complete", 2, 40, printEnd=""):
