@@ -102,7 +102,7 @@ while True:
     # measure real score of neighbor (to compare prediction against reality later)
     realBestNeighborScore = climateRegulation.getScore(t_inside, h_inside)
 
-    gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, currentState[0], currentState[1], bestNeighborScore, realBestNeighborScore)
+    gsheetLogger.log3(t_inside, h_inside, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, currentState[0], currentState[1], bestNeighborScore, realBestNeighborScore)
     
     prev_h_inside, prev_t_inside = h_inside, t_inside
     prev_h_outside, prev_t_outside = h_outside, t_outside
