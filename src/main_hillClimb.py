@@ -38,14 +38,17 @@ climateRegulation = ClimateRegulation(goal_temp, goal_humdity)
 #loop   
 
 # try:
+
 # initialize values
 currentState = climateRegulation.getRandomState()
 climateRegulation.setState(currentState)
 
+h_inside, t_inside = sensor_inside.getTemperatureHumidity()
+h_outside, t_outside = sensor_outside.getTemperatureHumidity()
 
-h_inside, t_inside, prev_h_inside, prev_t_inside = sensor_inside.getTemperatureHumidity()
-h_outside, t_outside, prev_h_outside, prev_t_outside = sensor_outside.getTemperatureHumidity()
-
+# Copy current values, because there are no previous values
+prev_h_inside, prev_t_inside = h_inside, t_inside
+prev_h_outside, prev_t_outside = h_outside, t_outside
 
 while True:
     neighborStates = climateRegulation.getNeighborStates(climateRegulation.getState())

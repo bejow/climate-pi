@@ -21,6 +21,10 @@ An automated climate regulation system. The climate Pi uses sensor data in combi
 - ```>> git clone git@github.com:bejow/climate-pi.git```
 - ```>> cd climate_pi```
 - Install Dependencies:
+    - [SKlearn on RPi](https://scikit-learn.org/stable/install.html)
+        - `>> pip3 install -U scikit-learn`
+        - `>> pip3 install numpy`
+        - `>> sudo apt-get install python-dev libatlas-base-dev`
     - [Adafruit_Python_DHT](https://github.com/adafruit/Adafruit_Python_DHT)
         - `>> sudo apt-get update`
         - `>> sudo apt-get install python3-pip`
