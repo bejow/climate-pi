@@ -1,5 +1,5 @@
 GDOCS_OAUTH_JSON       = 'google-auth.json'
-GDOCS_SPREADSHEET_NAME = 'test_data_with_random_settings'
+GDOCS_SPREADSHEET_NAME = 'smart_hillclimb'
 FREQUENCY_SECONDS      = 30
 
 FAN_STEPS = 10

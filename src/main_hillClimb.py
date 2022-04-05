@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import pickle
+from progress_bar import progressBar
 
 from relay import Relay
 from fan import Fan
@@ -67,7 +68,7 @@ while True:
         neighborScore = climateRegulation.getScore(predicted_t_inside, predicted_h_inside)
 
         # Logging Results
-        gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, neighborState[0], neighborState[1], neighborScore)
+
 
         # Compare States (small = better)
         if (neighborScore < bestNeighborScore):
@@ -78,10 +79,27 @@ while True:
     currentState = bestNeighborState
     climateRegulation.setState(currentState)
 
+    # Print the current action
     print("Setting Fan to: ", currentState[0])
     fan.setSpeed(currentState[0])
+
     print("Heating: ", currentState[1])
     heatingMat.setState(currentState[1])
+
+    # Wait until change take place
+    for item in progressBar(range(settings.TEST_TIME), "Testing Settings:", "Complete", 2, 40, printEnd=""):
+        time.sleep(1)
+
+    h_inside, t_inside = sensor_inside.getTemperatureHumidity()
+    h_outside, t_outside = sensor_outside.getTemperatureHumidity() 
+
+    # measure real score of neighbor (to compare prediction against reality later)
+    realBestNeighborScore = climateRegulation.getScore(t_inside, h_inside)
+
+    gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, currentState[0], currentState[1], bestNeighborScore, realBestNeighborScore)
+    
+    prev_h_inside, prev_t_inside = h_inside, t_inside
+    prev_h_outside, prev_t_outside = h_outside, t_outside
 
 
 
