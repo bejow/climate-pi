@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import pickle
 
 from relay import Relay
 from fan import Fan
@@ -8,6 +9,11 @@ from log import Log
 from problem import ClimateRegulation
 
 import settings
+
+# load trained model
+with open("model_lin_reg_xl", 'rb') as file:
+    model = pickle.load(file)
+    
 
 # Hill Climb: 
 # Minimize the time to achieve the goal state
@@ -36,8 +42,10 @@ climateRegulation = ClimateRegulation(goal_temp, goal_humdity)
 currentState = climateRegulation.getRandomState()
 climateRegulation.setState(currentState)
 
-h_inside, t_inside = sensor_inside.getTemperatureHumidity()
-h_outside, t_outside = sensor_outside.getTemperatureHumidity()
+
+h_inside, t_inside, prev_h_inside, prev_t_inside = sensor_inside.getTemperatureHumidity()
+h_outside, t_outside, prev_h_outside, prev_t_outside = sensor_outside.getTemperatureHumidity()
+
 
 while True:
     neighborStates = climateRegulation.getNeighborStates(climateRegulation.getState())
@@ -48,17 +56,12 @@ while True:
     for neighborState in neighborStates:
         print("Testing new Neighbor:", neighborState)
 
-        # Test with new params
-        fan.setSpeed(neighborState[0])
-        heatingMat.setState(neighborState[1])
-
-        # Wait until measurement makes sense (thermodynamic)
-        time.sleep(settings.TEST_TIME)
-        h_inside, t_inside = sensor_inside.getTemperatureHumidity()
-        h_outside, t_outside = sensor_outside.getTemperatureHumidity()
-
+        prediction = model.predict([[t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, neighborState[0], neighborState[1]]])
+        predicted_t_inside = prediction[0][0]
+        predicted_h_inside = prediction[0][1]
+        
         # Evalueate Neighbor
-        neighborScore = climateRegulation.getScore(t_inside, h_inside)
+        neighborScore = climateRegulation.getScore(predicted_t_inside, predicted_h_inside)
 
         # Logging Results
         gsheetLogger.log(t_inside, h_inside, t_outside, h_outside, neighborState[0], neighborState[1], neighborScore)
@@ -71,6 +74,11 @@ while True:
     # Make decision / Pick best state
     currentState = bestNeighborState
     climateRegulation.setState(currentState)
+
+    print("Setting Fan to: ", currentState[0])
+    fan.setSpeed(currentState[0])
+    print("Heating: ", currentState[1])
+    heatingMat.setState(currentState[1])
 
 
 
