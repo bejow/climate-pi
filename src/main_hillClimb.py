@@ -11,7 +11,7 @@ from problem import ClimateRegulation
 import settings
 
 # load trained model
-with open("model_lin_reg_xl", 'rb') as file:
+with open("model_lin_reg_xl.pkl", 'rb') as file:
     model = pickle.load(file)
     
 
