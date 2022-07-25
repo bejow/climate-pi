@@ -40,4 +40,33 @@ An automated climate regulation system. The climate Pi uses sensor data in combi
         - `>> sudo apt-get update`
         - `>> sudo apt-get install python-openssl`
 - Change settings regarding your needs under `src/settings.py`
-    
+# How to Train
+- Run: `src/main_randomSettings.py`
+
+    - This will collect Data about the system and save it to a  google spreadsheet specified in `src/settings.py`
+
+    - This process can take a while depending on how many datapoints you want to create (10 min for one row of data)
+
+- Export the data from google spreadsheet (as CSV) and save it in the project folder
+
+    - Specify `TRAINING_DATA_PATH` in `src/settings.py` according to your previous choosen save location
+
+- Run `src/linear_regression.ipynb`. This will create a .pkl file that contains your trained model (Path is specified in `src/settings.py`)
+
+# How to Run
+( Make sure you followed all previous instructions, otherwise this will fail )
+- Run: `src/main_hillClimb.py`
+
+    - This will control the climate system based on your trained model
+
+    - You can change the `TARGET_TEMPERATURE` and `TARGET_HUMIDITY` in `src/settings.py`
+
+# Disclaimer
+
+- The System is just as good as the data that went into the model. If you used to few Datapoints or placed your System somewhere different than where you trained the model, results may not be as expected
+
+- If you scale this project up/down you probably need different Hardware components
+
+- There is no active cooling / humidifying / dehumidifying
+
+    - That means that the system has limited capabilities when influencing the climate

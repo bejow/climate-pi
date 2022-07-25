@@ -3,11 +3,17 @@ GDOCS_SPREADSHEET_NAME = 'smart_hillclimb'
 FREQUENCY_SECONDS      = 30
 
 FAN_STEPS = 10
-
 TEST_TIME = 600
+TARGET_TEMPERATURE = 18
+TARGET_HUMIDITY = 60
 
 #Pinlayout: GPIO
 INSIDE_SENSOR_PIN = 2
 OUTSIDE_SENSOR_PIN = 3
 FAN_PIN = 18
 HEATING_MAT_RELAY_PIN = 21
+
+TRAINING_DATA_PATH = "data/test_data_with_random_settings_xl.csv"
+
+TRAINED_MODEL_PATH = "model_lin_reg_xl.pkl"
+

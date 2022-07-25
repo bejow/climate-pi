@@ -12,7 +12,7 @@ from problem import ClimateRegulation
 import settings
 
 # load trained model
-with open("model_lin_reg_xl.pkl", 'rb') as file:
+with open(settings.TRAINED_MODEL_PATH, 'rb') as file:
     model = pickle.load(file)
     
 
@@ -28,8 +28,8 @@ gsheetLogger = Log(settings.GDOCS_SPREADSHEET_NAME)
 fan = Fan(settings.FAN_PIN)
 sensor_inside = Sensor(settings.INSIDE_SENSOR_PIN)
 sensor_outside = Sensor(settings.OUTSIDE_SENSOR_PIN)
-goal_temp = 18
-goal_humdity = 60
+goal_temp = settings.TARGET_TEMPERATURE
+goal_humdity = settings.TARGET_HUMIDITY
 
 climateRegulation = ClimateRegulation(goal_temp, goal_humdity)
 
