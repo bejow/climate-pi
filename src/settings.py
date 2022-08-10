@@ -13,7 +13,7 @@ OUTSIDE_SENSOR_PIN = 3
 FAN_PIN = 18
 HEATING_MAT_RELAY_PIN = 21
 
-TRAINING_DATA_PATH = "data/test_data_with_random_settings_xl.csv"
+TRAINING_DATA_PATH = "data/climate_pi_data_xxl_summer.csv"
 
 TRAINED_MODEL_PATH = "model_lin_reg_xl.pkl"
 
