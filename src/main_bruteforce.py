@@ -83,6 +83,8 @@ while True:
 
     print("Estimated state after action: {0}% Humdity, {1}C Temperature".format(prediction[0][1], prediction[0][0]))
 
+    print("Estimates Score after action: {0}".format(score))
+
     # Wait until change take place
     for item in progressBar(range(settings.TEST_TIME), "Testing Settings:", "Complete", 2, 40, printEnd=""):
         time.sleep(1)
@@ -91,6 +93,9 @@ while True:
     h_outside, t_outside = sensor_outside.getTemperatureHumidity() 
 
     realBestNeighborScore = climateRegulation.getScore(t_inside, h_inside)
+
+    print("Measured Score after action: {0}".format(realBestNeighborScore))
+
 
     gsheetLogger.log3(t_inside, h_inside, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, currentState[0], currentState[1], score, realBestNeighborScore)
     
