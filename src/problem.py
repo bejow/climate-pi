@@ -1,5 +1,6 @@
 import random
 import settings
+import itertools
 class ClimateRegulation:
 
     def __init__(self, goalTemperature = 18, goalHumidity=60, currentFanState=None, currentHeatMatState=None, temperatureInside=None, humidityInside=None, temperatureOutside=None, humidityOutside=None):
@@ -15,7 +16,13 @@ class ClimateRegulation:
         self.goalTemperature = goalTemperature
 
     def getRandomState(self):
-        return random.choice(self.fanStates), random.choice(self.heatMatStates) 
+        return random.choice(self.fanStates), random.choice(self.heatMatStates)
+    
+    def getAllStates(self):
+        states = []
+        for r in itertools.product(self.heatMatStates, self.fanStates): 
+            states.append((r[0], r[1]))
+        return states
 
     def getNeighborStates(self, state):
         neighborStates = []
