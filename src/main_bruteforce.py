@@ -22,7 +22,7 @@ def chooseBestState(climateRegulationObject, t_outside, h_outside, prev_t_inside
     print(scores)
     print(max_value)
     print(max_index)
-    return (states[max_index], predictions[max_index])
+    return (states[max_index], predictions[max_index], scores[max_index])
 
 # load trained model
 with open(settings.TRAINED_MODEL_PATH, 'rb') as file:
@@ -67,7 +67,7 @@ prev_h_outside, prev_t_outside = h_outside, t_outside
 
 while True:
     
-    currentState, prediction = chooseBestState(climateRegulation, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside)
+    currentState, prediction, score = chooseBestState(climateRegulation, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside)
     climateRegulation.setState(currentState)
 
     # Print current environment values
@@ -75,11 +75,11 @@ while True:
     print("Temperature:\ninside:{0}\noutside:{1}".format(t_inside, t_outside))
 
     # Print the current action
-    print("Setting Fan to: ", currentState[0])
-    fan.setSpeed(currentState[0])
+    print("Setting Fan to: ", currentState[1])
+    fan.setSpeed(currentState[1])
 
-    print("Heating: ", currentState[1])
-    heatingMat.setState(currentState[1])
+    print("Heating: ", currentState[0])
+    heatingMat.setState(currentState[0])
 
     print("Estimated state after action: {0}% Humdity, {1}C Temperature".format(prediction[0][1], prediction[0][0]))
 
@@ -90,10 +90,9 @@ while True:
     h_inside, t_inside = sensor_inside.getTemperatureHumidity()
     h_outside, t_outside = sensor_outside.getTemperatureHumidity() 
 
-    # measure real score of neighbor (to compare prediction against reality later)
     realBestNeighborScore = climateRegulation.getScore(t_inside, h_inside)
 
-    gsheetLogger.log3(t_inside, h_inside, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, currentState[0], currentState[1], bestNeighborScore, realBestNeighborScore)
+    gsheetLogger.log3(t_inside, h_inside, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, currentState[0], currentState[1], score, realBestNeighborScore)
     
     prev_h_inside, prev_t_inside = h_inside, t_inside
     prev_h_outside, prev_t_outside = h_outside, t_outside
