@@ -22,7 +22,7 @@ def chooseBestState(climateRegulationObject, t_outside, h_outside, prev_t_inside
     print(scores)
     print(max_value)
     print(max_index)
-    return (states[max_index], prediction[max_index])
+    return (states[max_index], predictions[max_index])
 
 # load trained model
 with open(settings.TRAINED_MODEL_PATH, 'rb') as file:
