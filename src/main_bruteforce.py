@@ -14,7 +14,7 @@ import settings
 def chooseBestState(climateRegulationObject, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside):
     states = climateRegulationObject.getAllStates()
     predictions = [model.predict([[t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, currentState[0], currentState[1]]]) for currentState in states]
-    scores = [climateRegulationObject.getScore(currentPrediction[1], currentPrediction[0]) for currentPrediction in predictions]
+    scores = [climateRegulationObject.getScore(currentPrediction[0][1], currentPrediction[0][0]) for currentPrediction in predictions]
     max_value = max(scores)
     max_index = states.index(max_value)
     print(states)
@@ -81,7 +81,7 @@ while True:
     print("Heating: ", currentState[1])
     heatingMat.setState(currentState[1])
 
-    print("Estimated state after action: {0}% Humdity, {1}C Temperature".format(prediction[0], prediction[1]))
+    print("Estimated state after action: {0}% Humdity, {1}C Temperature".format(prediction[0][0], prediction[0][1]))
 
     # Wait until change take place
     for item in progressBar(range(settings.TEST_TIME), "Testing Settings:", "Complete", 2, 40, printEnd=""):
