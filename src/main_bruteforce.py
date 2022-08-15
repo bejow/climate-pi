@@ -16,7 +16,7 @@ def chooseBestState(climateRegulationObject, t_outside, h_outside, prev_t_inside
     predictions = [model.predict([[t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, currentState[0], currentState[1]]]) for currentState in states]
     scores = [climateRegulationObject.getScore(currentPrediction[0][1], currentPrediction[0][0]) for currentPrediction in predictions]
     max_value = max(scores)
-    max_index = states.index(max_value)
+    max_index = scores.index(max_value)
     print(states)
     print(predictions)
     print(scores)
