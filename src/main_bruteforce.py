@@ -97,7 +97,7 @@ while True:
     print("Measured Score after action: {0}".format(realBestNeighborScore))
 
 
-    gsheetLogger.log3(t_inside, h_inside, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, currentState[0], currentState[1], score, realBestNeighborScore)
+    gsheetLogger.log3(t_inside, h_inside, t_outside, h_outside, prev_t_inside, prev_h_inside, prev_t_outside, prev_h_outside, currentState[1], currentState[0], score, realBestNeighborScore, prediction[0][1], prediction[0][0])
     
     prev_h_inside, prev_t_inside = h_inside, t_inside
     prev_h_outside, prev_t_outside = h_outside, t_outside

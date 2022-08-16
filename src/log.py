@@ -62,7 +62,7 @@ class Log:
 
         print('Wrote a row to {0}'.format(self.spreadsheet_name))
 
-    def log3(self, temperature_inside, humidity_inside, temperature_outside, humidity_outside, previous_temperature_inside, previous_humidity_inside, previous_temperature_outside, previous_humidity_outside, fan_speed=0, is_heating=False, score=0, real_score=0):
+    def log3(self, temperature_inside, humidity_inside, temperature_outside, humidity_outside, previous_temperature_inside, previous_humidity_inside, previous_temperature_outside, previous_humidity_outside, fan_speed=0, is_heating=False, score=0, real_score=0, predicted_humidity="", predicted_temperature=""):
         if self.worksheet is None:
             self.worksheet = self.login_open_sheet(settings.GDOCS_OAUTH_JSON, self.spreadsheet_name)
 
@@ -79,6 +79,8 @@ class Log:
         print('Humidity outside:    {0:0.1f} %'.format(humidity_outside))
 
         print('Score estimated: {0}'.format(score))
+        print('Temperature estimated: {0}'.format(predicted_temperature))
+        print('Humidity estimated: {0}'.format(predicted_humidity))
         print('Fan Speed: {0}'.format(fan_speed))
         print('Is heating: {0}'.format(is_heating))
 
